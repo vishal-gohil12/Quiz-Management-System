@@ -56,3 +56,74 @@ Quizo is a web-based quiz management platform that allows teachers to create, ma
     npm install
     ```
 
+## API Endpoints
+**Authentication**
+    POST /login
+    Demo credentials: demoTeacher, password=demoTeacher
+    Request:
+    ```bash
+    {
+        "username": "admin",
+        "password": "password"
+    }
+    ```
+**Quiz Management**
+Create Quiz
+POST /quizzes
+
+**Get Quizzes by Teacher**
+GET /quizzes?teacherName=demoTeacher
+
+**Get Quiz Details**
+GET /quizzes/{id}
+
+**Update Quiz**
+PUT /quizzes/{id}
+
+**Delete Quiz**
+DELETE /quizzes/{id}
+
+**Database Schema (Prisma)**
+```bash
+    model User {
+    id       String @id @default(uuid())
+    username String @unique
+    password String
+    quizzes  Quiz[]
+    }
+
+    model Quiz {
+    id          String @id @default(uuid())
+    title       String
+    description String
+    createdAt   DateTime @default(now())
+    teacher     User @relation(fields: [teacherId], references: [id])
+    teacherId   String
+    questions   Question[]
+    }
+
+    model Question {
+    id          String @id @default(uuid())
+    questionText String
+    quiz        Quiz @relation(fields: [quizId], references: [id])
+    quizId      String
+    options     Option[]
+    }
+
+    model Option {
+    id          String @id @default(uuid())
+    text        String
+    isCorrect   Boolean @default(false)
+    question    Question @relation(fields: [questionId], references: [id])
+    questionId  String
+    }
+```
+
+**License**
+
+This version includes:
+1. Explicit database setup instructions
+2. Complete Prisma schema reference
+3. Ready-to-use endpoint examples
+4. Clear environment variable setup
+5. Full workflow from installation to API usage
