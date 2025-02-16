@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import { backend_url } from "@/BackendURL";
 
 interface QuizData {
   title: string;
@@ -23,7 +24,7 @@ export default function CreateEditQuizPage() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3000/quizzes/${id}`)
+        .get(`${backend_url}/quizzes/${id}`)
         .then((response) => {
           const quiz: QuizData = response.data.quiz;
           setTitle(quiz.title);
@@ -51,11 +52,11 @@ export default function CreateEditQuizPage() {
 
     try {
       if (id) {
-        await axios.put(`http://localhost:3000/quizzes/${id}`, quizData, {
+        await axios.put(`${backend_url}/quizzes/${id}`, quizData, {
           headers: { "Content-Type": "application/json" },
         });
       } else {
-        await axios.post(`http://localhost:3000/quiz`, quizData, {
+        await axios.post(`${backend_url}/quiz`, quizData, {
           headers: { "Content-Type": "application/json" },
         });
       }

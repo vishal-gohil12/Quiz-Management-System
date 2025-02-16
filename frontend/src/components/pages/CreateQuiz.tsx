@@ -1,6 +1,3 @@
-// POST body expected in backend:
-// const { title, description, username, questions } : Quiz = req.body;
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,6 +5,7 @@ import { Button } from "../ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import { backend_url } from "@/BackendURL";
 
 interface Option {
   text: string;
@@ -29,7 +27,6 @@ interface QuizData {
 export default function CreateQuiz() {
   const navigate = useNavigate();
   
-  // Form state
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [username, setUsername] = useState<string>("demoTeacher");
@@ -101,7 +98,7 @@ export default function CreateQuiz() {
     };
 
     try {
-      await axios.post("http://localhost:3000/quizzes", quizData, {
+      await axios.post(`${backend_url}/quizzes`, quizData, {
         headers: { "Content-Type": "application/json" },
       });
       navigate("/dashboard");

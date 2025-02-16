@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import axios from "axios";
+import { backend_url } from "@/BackendURL";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -18,7 +19,7 @@ export default function Login() {
       return;
     }
    try {
-    const res = await axios.post("http://localhost:3000/user/login", { username, password });
+    const res = await axios.post(`${backend_url}/user/login`, { username, password });
     if(res.data.status) {
       navigate('/dashboard');
     }

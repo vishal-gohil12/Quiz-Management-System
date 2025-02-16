@@ -22,6 +22,7 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog';
 import axios from 'axios';
+import { backend_url } from '@/BackendURL';
 
 export interface Quiz {
   id: string;
@@ -42,7 +43,7 @@ export default function DashboardPage() {
     async function fetchQuizzes() {
       try {
         const response = await fetch(
-          `http://localhost:3000/quizzes?teacherName=${encodeURIComponent(teacherName)}`,
+          `${backend_url}/quizzes?teacherName=${encodeURIComponent(teacherName)}`,
           {
             method: "GET",
             headers: {
@@ -73,7 +74,7 @@ export default function DashboardPage() {
 
   async function handleDeleteQuiz(quizId: string) {
     try {
-      await axios.delete(`http://localhost:3000/quizzes/${quizId}`);
+      await axios.delete(`${backend_url}/quizzes/${quizId}`);
       setQuizzes(quizzes.filter((quiz) => quiz.id !== quizId));
     }  catch (error) {
       console.error("Error deleting quiz:", error);

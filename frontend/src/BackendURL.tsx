@@ -1,0 +1,1 @@
+export const backend_url = "https://quiz-management-system-g0ma.onrender.com";
