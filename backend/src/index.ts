@@ -5,7 +5,7 @@ import { quizRoute } from "./route/quizRoute";
 import cors from "cors";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 export const prisma = new PrismaClient();
 app.use(express.json());

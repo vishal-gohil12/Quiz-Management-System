@@ -72,16 +72,16 @@ Create Quiz
 POST /quizzes
 
 **Get Quizzes by Teacher**
-GET /quizzes?teacherName=demoTeacher
+1. GET /quizzes?teacherName=demoTeacher
 
 **Get Quiz Details**
-GET /quizzes/{id}
+1. GET /quizzes/{id}
 
 **Update Quiz**
-PUT /quizzes/{id}
+1. PUT /quizzes/{id}
 
 **Delete Quiz**
-DELETE /quizzes/{id}
+1. DELETE /quizzes/{id}
 
 **Database Schema (Prisma)**
 ```bash
