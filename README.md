@@ -77,7 +77,7 @@ Quizo is a web-based quiz management platform that allows teachers to create, ma
 **Quiz Management**
 Create Quiz
 POST /quizzes
-    ```{
+    ```bash{
         "title": "Science Quiz",
         "description": "Test your science knowledge",
         "username": "demoTeacher",
@@ -94,20 +94,20 @@ POST /quizzes
         }```
     
     Response:
-    ```{
-  "quiz": {
-    "id": "quiz_456",
-    "title": "Science Quiz",
-    "description": "Test your science knowledge",
-    "createdAt": "2024-02-20T10:00:00.000Z",
-    "teacherId": "teacher_789",
-    "questions": [/* Full question details */]
-  }
+        ``` bsh{
+    "quiz": {
+        "id": "quiz_456",
+        "title": "Science Quiz",
+        "description": "Test your science knowledge",
+        "createdAt": "2024-02-20T10:00:00.000Z",
+        "teacherId": "teacher_789",
+        "questions": [/* Full question details */]
+    }
 }```
 
 **Get Quizzes by Teacher**
 1. GET /quizzes?teacherName=demoTeacher
-```{
+```bash{
   "quizzes": [
     {
       "id": "quiz_456",
@@ -123,7 +123,7 @@ POST /quizzes
 
 **Get Quiz Details**
 1. GET /quizzes/{id}
-```{
+```bash{
   "quiz": {
     "title": "Science Quiz",
     "description": "Test your science knowledge"
@@ -132,7 +132,7 @@ POST /quizzes
 
 **Update Quiz**
 1. PUT /quizzes/{id}
-```{
+```bash{
   "title": "Advanced Science Quiz",
   "description": "Updated description"
 }
@@ -146,9 +146,10 @@ POST /quizzes
 ```
 **Delete Quiz**
 1. DELETE /quizzes/{id}
-```{
+```bash {
   "message": "Quiz deleted successfully."
-}```
+}
+```
 
 **Database Schema (Prisma)**
 ```bash
