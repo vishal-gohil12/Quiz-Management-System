@@ -66,22 +66,89 @@ Quizo is a web-based quiz management platform that allows teachers to create, ma
         "username": "admin",
         "password": "password"
     }
+
+    Response:
+    ```
+    res.status(200).json({
+            status: true,
+            message: "login"
+        });
     ```
 **Quiz Management**
 Create Quiz
 POST /quizzes
+    ```{
+        "title": "Science Quiz",
+        "description": "Test your science knowledge",
+        "username": "demoTeacher",
+        "questions": [
+            {
+            "questionText": "What is H2O?",
+            "options": [
+                { "text": "Water", "isCorrect": true },
+                { "text": "Oxygen", "isCorrect": false },
+                { "text": "Carbon Dioxide", "isCorrect": false }
+            ]
+            }
+        ]
+        }```
+    
+    Response:
+    ```{
+  "quiz": {
+    "id": "quiz_456",
+    "title": "Science Quiz",
+    "description": "Test your science knowledge",
+    "createdAt": "2024-02-20T10:00:00.000Z",
+    "teacherId": "teacher_789",
+    "questions": [/* Full question details */]
+  }
+}```
 
 **Get Quizzes by Teacher**
 1. GET /quizzes?teacherName=demoTeacher
+```{
+  "quizzes": [
+    {
+      "id": "quiz_456",
+      "title": "Science Quiz",
+      "description": "Test your science knowledge",
+      "createdAt": "2024-02-20T10:00:00.000Z",
+      "teacherId": "teacher_789"
+    }
+  ]
+}
+```
+
 
 **Get Quiz Details**
 1. GET /quizzes/{id}
+```{
+  "quiz": {
+    "title": "Science Quiz",
+    "description": "Test your science knowledge"
+  }
+}```
 
 **Update Quiz**
 1. PUT /quizzes/{id}
+```{
+  "title": "Advanced Science Quiz",
+  "description": "Updated description"
+}
 
+{
+  "quiz": {
+    "title": "Advanced Science Quiz",
+    "description": "Updated description"
+  }
+}
+```
 **Delete Quiz**
 1. DELETE /quizzes/{id}
+```{
+  "message": "Quiz deleted successfully."
+}```
 
 **Database Schema (Prisma)**
 ```bash
